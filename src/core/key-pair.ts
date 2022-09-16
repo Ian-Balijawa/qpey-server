@@ -1,0 +1,26 @@
+import {generateKeyPair} from "crypto";
+import { promisify } from "util";
+import { CIPHER } from "./constants";
+
+const generateKeyPairAsync = promisify(generateKeyPair)
+
+type PublicKey = string;
+type PrivateKey = string;
+
+export const generateKeyPairRSA = async (): Promise<[PublicKey,PrivateKey]> => {
+    const {privateKey,publicKey} = await generateKeyPairAsync("rsa",{
+      modulusLength: 4096,
+      publicKeyEncoding: {
+        type: 'spki',
+        format: 'pem'
+      },
+      privateKeyEncoding: {
+        type: 'pkcs8',
+        format: 'pem',
+        cipher: CIPHER,
+        passphrase:process.env.PASS_PHRASE!,
+      }
+    })
+
+  return [publicKey,privateKey]
+}
