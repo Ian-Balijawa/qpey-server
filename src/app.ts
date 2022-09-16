@@ -15,11 +15,13 @@ import { smsRouter } from './routes/sms';
 import { verifyPhoneRouter } from './routes/sms/send-verification-code';
 import { encryptionRouter } from './routes/crypto/public-encrypt';
 import { decryptionRouter } from './routes/crypto/private-decrypt';
+import { limiter } from './middlewares';
 
 const app: Express = express();
 
 const apiPrefixEndPoint = '/api/v1';
 
+app.use(limiter);
 app.set('trust proxy', true);
 app.disable('X-Powered-By');
 app.use(cors());
