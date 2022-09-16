@@ -27,13 +27,7 @@ app.disable('X-Powered-By');
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
-app.use(
-	cookieSession({
-		secure: process.env.NODE_ENV === 'production',
-		secret: process.env.COOKIE_SERCRET!,
-		keys: [process.env.COOKIE_KEY!],
-	})
-);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
