@@ -1,4 +1,5 @@
 import { rateLimit, RateLimitRequestHandler } from 'express-rate-limit';
+import { __PROD__ } from '../config/__prod__';
 
 const ONE_MINUTE = 1 * 60 * 1000; // 1 minute
 /**
@@ -9,7 +10,7 @@ const ONE_MINUTE = 1 * 60 * 1000; // 1 minute
  */
 const limiter: RateLimitRequestHandler = rateLimit({
 	windowMs: ONE_MINUTE,
-	max: 5,
+	max: __PROD__ ? 5 : Number.MAX_SAFE_INTEGER,
 });
 
 export { limiter };
