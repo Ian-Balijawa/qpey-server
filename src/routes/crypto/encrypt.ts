@@ -21,7 +21,7 @@ router.post('/', requireAuth, async (req: Request, res: Response) => {
 
 	if (!user) {
 		const error = new NotAuthorizedError(
-			'not authorised. Need to sign in to acces this route'
+			'Need to be signed in to access this route'
 		);
 		return res.status(error.statusCode).send(error.serializeErrors());
 	}

@@ -13,8 +13,8 @@ import { signupRouter } from './routes/auth/signup';
 import { pingRouter } from './routes/home';
 import { smsRouter } from './routes/sms';
 import { verifyPhoneRouter } from './routes/sms/send-verification-code';
-import { encryptionRouter } from './routes/crypto/public-encrypt';
-import { decryptionRouter } from './routes/crypto/private-decrypt';
+import { encryptionRouter } from './routes/crypto/encrypt';
+import { decryptionRouter } from './routes/crypto/decrypt';
 import { limiter } from './middlewares';
 
 const app: Express = express();
