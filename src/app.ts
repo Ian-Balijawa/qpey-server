@@ -26,7 +26,7 @@ app.set('trust proxy', true);
 app.disable('X-Powered-By');
 app.use(cors());
 app.use(helmet());
-app.use(morgan('dev'));
+app.use(morgan('combined'));
 app.use(
 	cookieSession({
 		secure: process.env.NODE_ENV === 'production',
