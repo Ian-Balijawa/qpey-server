@@ -27,7 +27,6 @@
 		"dot-env": "^0.0.1",
 		"dotenv": "^16.0.1",
 		"dotenv-safe": "^8.2.0",
-		"encrypt-rsa": "^2.1.2",
 		"express": "^4.18.1",
 		"express-rate-limit": "^6.6.0",
 		"express-validator": "^6.14.2",
