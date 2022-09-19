@@ -8,10 +8,10 @@
 	"license": "ISC",
 	"scripts": {
 		"dev": "tsc -w",
-		"start": "ts-node-dev src/index.ts",
-		"start2": "nodemon ./build/index.js",
 		"build": "tsc",
-		"prod": "node ./build/index.js"
+		"monit": "nodemon ./build/index.js",
+		"prod": "node ./build/index.js",
+		"build:prod": "yarn build && yarn prod"
 	},
 	"jest": {
 		"preset": "ts-jest",
