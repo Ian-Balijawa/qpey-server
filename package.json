@@ -10,8 +10,8 @@
 		"dev": "tsc -w",
 		"start": "ts-node-dev src/index.ts",
 		"start2": "nodemon ./build/index.js",
-		"prod": "yarn dev && yarn start2",
-		"test": "jest --watchAll --no-cache"
+		"build": "tsc",
+		"prod": "node ./build/index.js"
 	},
 	"jest": {
 		"preset": "ts-jest",
@@ -21,28 +21,21 @@
 		]
 	},
 	"dependencies": {
-		"@trycourier/courier": "^3.15.0",
 		"cookie-session": "^2.0.0",
 		"cors": "^2.8.5",
 		"dot-env": "^0.0.1",
 		"dotenv": "^16.0.1",
-		"dotenv-safe": "^8.2.0",
 		"express": "^4.18.1",
 		"express-rate-limit": "^6.6.0",
 		"express-validator": "^6.14.2",
 		"helmet": "^5.1.0",
-		"ioredis": "^5.1.0",
 		"jest": "^28.1.2",
-		"joi": "^17.6.0",
 		"jsonwebtoken": "^8.5.1",
-		"mongodb": "^4.8.1",
 		"mongoose": "^6.4.6",
 		"morgan": "^1.10.0",
 		"node-rsa": "^1.1.1",
 		"redis": "^4.1.1",
 		"supertest": "^6.2.4",
-		"ts-jest": "^28.0.5",
-		"ts-node": "^10.8.2",
 		"ts-node-dev": "^1.0.0-pre.44",
 		"twilio": "^3.81.0"
 	},
@@ -58,7 +51,6 @@
 		"@types/node": "^17.0.25",
 		"@types/node-rsa": "^1.1.1",
 		"@types/supertest": "^2.0.12",
-		"concurrently": "^7.1.0",
 		"nodemon": "^2.0.15",
 		"typescript": "^4.4.4"
 	}
