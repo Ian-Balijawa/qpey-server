@@ -10,7 +10,7 @@ import { currentUserRouter } from './routes/auth/current-user';
 import { signinRouter } from './routes/auth/signin';
 import { signoutRouter } from './routes/auth/signout';
 import { signupRouter } from './routes/auth/signup';
-import { homeRouter } from './routes/home';
+import { pingRouter } from './routes/home';
 import { smsRouter } from './routes/sms';
 import { verifyPhoneRouter } from './routes/sms/send-verification-code';
 import { encryptionRouter } from './routes/crypto/public-encrypt';
@@ -27,7 +27,13 @@ app.disable('X-Powered-By');
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
-
+app.use(
+	cookieSession({
+		secure: process.env.NODE_ENV === 'production',
+		secret: process.env.COOKIE_SERCRET!,
+		keys: [process.env.COOKIE_KEY!],
+	})
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -39,7 +45,9 @@ app.use(`${apiPrefixEndPoint}/sms`, smsRouter);
 app.use(`${apiPrefixEndPoint}/verify-phone`, verifyPhoneRouter);
 app.use(`${apiPrefixEndPoint}/encrypt`, encryptionRouter);
 app.use(`${apiPrefixEndPoint}/decrypt`, decryptionRouter);
-app.use(`${apiPrefixEndPoint}`, homeRouter);
+app.use(`${apiPrefixEndPoint}/ping`, pingRouter);
+// app.use(`${apiPrefixEndPoint}/e`, ETest);
+// app.use(`${apiPrefixEndPoint}/d`, DTest);
 
 app.all('*', async (req: Request, res: Response) => {
 	const error = new NotFoundError('Route to resource not Found');
