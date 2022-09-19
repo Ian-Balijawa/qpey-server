@@ -12,8 +12,9 @@
 		"build:prod": "yarn build && yarn prod",
 		"build": "tsc",
 		"start": "node ./build/index",
-		"dev": "nodemon --watch \"./**/*.ts\" --exec \"ts-node\" source/index.ts",
-		"postinstall": "tsc"
+		"dev": "nodemon --watch \"./**/*.ts\" --exec \"ts-node\" src/index.ts",
+		"postinstall": "tsc",
+		"dev:watch": "tsc -w"
 	},
 	"engines": {
 		"node": "16.17.0",

@@ -2895,7 +2895,7 @@ node-releases@^2.0.5:
 
 node-rsa@^1.1.1:
   version "1.1.1"
-  resolved "https://registry.npmjs.org/node-rsa/-/node-rsa-1.1.1.tgz"
+  resolved "https://registry.yarnpkg.com/node-rsa/-/node-rsa-1.1.1.tgz#efd9ad382097782f506153398496f79e4464434d"
   integrity sha512-Jd4cvbJMryN21r5HgxQOpMEqv+ooke/korixNNK3mGqfGJmy0M77WDDzo/05969+OkMy3XW1UuZsSmW9KQm7Fw==
   dependencies:
     asn1 "^0.2.4"
