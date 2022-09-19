@@ -36,7 +36,6 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(`${apiPrefixEndPoint}/auth/`, signupRouter);
 app.use(`${apiPrefixEndPoint}/auth/signin`, signinRouter);
 app.use(`${apiPrefixEndPoint}/auth/current-user`, currentUserRouter);
@@ -46,8 +45,6 @@ app.use(`${apiPrefixEndPoint}/verify-phone`, verifyPhoneRouter);
 app.use(`${apiPrefixEndPoint}/encrypt`, encryptionRouter);
 app.use(`${apiPrefixEndPoint}/decrypt`, decryptionRouter);
 app.use(`${apiPrefixEndPoint}/ping`, pingRouter);
-// app.use(`${apiPrefixEndPoint}/e`, ETest);
-// app.use(`${apiPrefixEndPoint}/d`, DTest);
 
 app.all('*', async (req: Request, res: Response) => {
 	const error = new NotFoundError('Route to resource not Found');
