@@ -10,7 +10,7 @@
 		"dev": "tsc -w",
 		"start": "ts-node-dev src/index.ts",
 		"start2": "nodemon ./build/index.js",
-		"prod": "yarn  start ./build/index.js",
+		"prod": "yarn dev && yarn start2",
 		"test": "jest --watchAll --no-cache"
 	},
 	"jest": {
