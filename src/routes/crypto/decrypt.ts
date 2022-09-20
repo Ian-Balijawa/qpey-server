@@ -26,7 +26,6 @@ router.post(
 			phone: req.currentUser?.phone,
 		});
 
-		console.log(currentUser?.privateKey);
 		if (!currentUser) {
 			const error = new NotAuthorizedError(
 				'not authorised. Need to sign in to access this route'
@@ -43,8 +42,7 @@ router.post(
 			Buffer.from(cipherText, 'base64')
 		);
 
-		console.log('plainText: ', plainText);
-		res.status(200).send(plainText.toString('utf8'));
+		res.status(200).send(JSON.parse(plainText.toString('utf8')));
 	}
 );
 

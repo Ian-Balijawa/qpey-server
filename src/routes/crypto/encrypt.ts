@@ -8,9 +8,8 @@ import { NotAuthorizedError } from '../../errors/not-authorized-error';
 const router = express.Router();
 
 router.post('/', requireAuth, async (req: Request, res: Response) => {
-	const { payload: data } = req.body;
-
-	if (!data) {
+	const payload = JSON.stringify(req.body);
+	if (!payload) {
 		const error = new BadRequestError(
 			'Must provide valid plain text data to be encrypted'
 		);
@@ -31,7 +30,7 @@ router.post('/', requireAuth, async (req: Request, res: Response) => {
 			padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
 			oaepHash: 'sha512',
 		},
-		Buffer.from(data, 'utf8')
+		Buffer.from(payload, 'utf8')
 	);
 
 	res.status(200).send(cipherText.toString('base64'));

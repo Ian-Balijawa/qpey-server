@@ -10,11 +10,11 @@
 		"monit": "nodemon ./build/index.js",
 		"prod": "node ./build/index.js",
 		"build:prod": "yarn build && yarn prod",
-		"build": "tsc",
-		"start": "node ./build/index",
-		"dev": "nodemon --watch \"./**/*.ts\" --exec \"ts-node\" src/index.ts",
+		"watch": "nodemon --watch \"./**/*.ts\" --exec \"ts-node\" src/index.ts",
 		"postinstall": "tsc",
-		"dev:watch": "tsc -w"
+		"dev": "tsc -w",
+		"build": "tsc",
+		"start": "node ./build/index"
 	},
 	"engines": {
 		"node": "16.17.0",
@@ -40,10 +40,8 @@
 		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^6.4.6",
 		"morgan": "^1.10.0",
-		"node-rsa": "^1.1.1",
 		"redis": "^4.1.1",
 		"supertest": "^6.2.4",
-		"ts-node-dev": "^1.0.0-pre.44",
 		"twilio": "^3.81.0"
 	},
 	"devDependencies": {
@@ -56,7 +54,6 @@
 		"@types/jsonwebtoken": "^8.5.8",
 		"@types/morgan": "^1.9.3",
 		"@types/node": "^17.0.25",
-		"@types/node-rsa": "^1.1.1",
 		"@types/supertest": "^2.0.12",
 		"nodemon": "^2.0.15",
 		"typescript": "^4.4.4"
