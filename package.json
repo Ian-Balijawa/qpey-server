@@ -7,10 +7,10 @@
 	],
 	"license": "ISC",
 	"scripts": {
-		"build": "tsc && yarn run ./build/index.js",
-		"start": "node ./build/index.js",
-		"dev": "nodemon --watch \"./**/*.ts\" --exec \"ts-node\" source/index.ts",
-		"postinstall": "tsc"
+		"postinstall": "tsc",
+		"start": "node build/index.js",
+		"watch-ts": "tsc -w",
+		"dev": "nodemon --watch \"./**/*.ts\" --exec \"ts-node\" source/index.ts"
 	},
 	"engines": {
 		"node": "16.17.0",
