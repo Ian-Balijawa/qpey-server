@@ -15,13 +15,13 @@ import { smsRouter } from './routes/sms';
 import { verifyPhoneRouter } from './routes/sms/send-verification-code';
 import { encryptionRouter } from './routes/crypto/encrypt';
 import { decryptionRouter } from './routes/crypto/decrypt';
-import { limiter } from './middlewares';
+import { limiter as rateLimiter } from './middlewares';
 
 const app: Express = express();
 
-const apiPrefixEndPoint = '/api/v1';
+const apiPrefix = '/api/v1';
 
-app.use(limiter);
+app.use(rateLimiter);
 app.set('trust proxy', true);
 app.disable('X-Powered-By');
 app.use(cors());
@@ -36,15 +36,15 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(`${apiPrefixEndPoint}/auth/`, signupRouter);
-app.use(`${apiPrefixEndPoint}/auth/signin`, signinRouter);
-app.use(`${apiPrefixEndPoint}/auth/current-user`, currentUserRouter);
-app.use(`${apiPrefixEndPoint}/auth/signout`, signoutRouter);
-app.use(`${apiPrefixEndPoint}/sms`, smsRouter);
-app.use(`${apiPrefixEndPoint}/verify-phone`, verifyPhoneRouter);
-app.use(`${apiPrefixEndPoint}/encrypt`, encryptionRouter);
-app.use(`${apiPrefixEndPoint}/decrypt`, decryptionRouter);
-app.use(`${apiPrefixEndPoint}/ping`, pingRouter);
+app.use(`${apiPrefix}/auth/`, signupRouter);
+app.use(`${apiPrefix}/auth/signin`, signinRouter);
+app.use(`${apiPrefix}/auth/current-user`, currentUserRouter);
+app.use(`${apiPrefix}/auth/signout`, signoutRouter);
+app.use(`${apiPrefix}/sms`, smsRouter);
+app.use(`${apiPrefix}/verify-phone`, verifyPhoneRouter);
+app.use(`${apiPrefix}/encrypt`, encryptionRouter);
+app.use(`${apiPrefix}/decrypt`, decryptionRouter);
+app.use(`${apiPrefix}/ping`, pingRouter);
 
 app.all('*', async (req: Request, res: Response) => {
 	const error = new NotFoundError('Route to resource not Found');
