@@ -42,7 +42,7 @@ router.post(
 			Buffer.from(cipherText, 'base64')
 		);
 
-		res.status(200).send(plainText.toString('utf8'));
+		res.status(200).send(JSON.parse(plainText.toString('utf8')));
 	}
 );
 

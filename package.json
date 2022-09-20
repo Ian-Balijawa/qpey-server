@@ -10,9 +10,9 @@
 		"monit": "nodemon ./build/index.js",
 		"prod": "node ./build/index.js",
 		"build:prod": "yarn build && yarn prod",
-		"dev": "nodemon --watch \"./**/*.ts\" --exec \"ts-node\" src/index.ts",
+		"watch": "nodemon --watch \"./**/*.ts\" --exec \"ts-node\" src/index.ts",
 		"postinstall": "tsc",
-		"watch": "tsc -w",
+		"dev": "tsc -w",
 		"build": "tsc",
 		"start": "node ./build/index"
 	},
