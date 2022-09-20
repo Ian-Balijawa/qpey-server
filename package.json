@@ -8,7 +8,7 @@
 	"license": "ISC",
 	"scripts": {
 		"build": "tsc",
-		"start": "node ./build/index",
+		"start": "node ./build/index.js",
 		"postinstall": "tsc",
 		"monit": "nodemon ./build/index.js",
 		"dev": "tsc -w"
