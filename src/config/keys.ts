@@ -3,9 +3,7 @@ import { MOMO, QPEY } from '../Interfaces/keys';
 
 let QPEY_KEYS: QPEY = {
 	JWT_KEY: __PROD__ ? process.env.JWT_KEY : 'asdfasd',
-	MONGO_URI: __PROD__
-		? process.env.MONGO_URI
-		: 'mongodb://localhost:27017/qpey',
+	MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost:27017/qpey',
 	REDIS_URI: __PROD__ ? process.env.REDIS_URI : 'asdfasd',
 	SECRET_KEY: __PROD__ ? process.env.API_KEY : 'asdfasd',
 	COOKIE_SECRET: __PROD__ ? process.env.COOKIE_SECRET : 'asdfasd',
