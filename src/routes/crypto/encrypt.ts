@@ -4,6 +4,7 @@ import crypto from 'crypto';
 import { AuthenticatedMiddleware as requireAuth } from '../../middlewares/require-auth';
 import { User } from '../../models/User';
 import { NotAuthorizedError } from '../../errors/not-authorized-error';
+import { InternalServerError } from '../../errors/internal-server-error';
 
 const router = express.Router();
 
@@ -24,16 +25,25 @@ router.post('/', requireAuth, async (req: Request, res: Response) => {
 		);
 		return res.status(error.statusCode).send(error.serializeErrors());
 	}
-	const cipherText = crypto.publicEncrypt(
-		{
-			key: user?.publicKey!,
-			padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-			oaepHash: 'sha512',
-		},
-		Buffer.from(payload, 'utf8')
-	);
+	try {
+		const cipherText = crypto.publicEncrypt(
+			{
+				key: user?.publicKey!,
+				padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
+				oaepHash: 'sha512',
+			},
+			Buffer.from(payload, 'utf8')
+		);
+		return res.status(200).send(cipherText.toString('base64'));
+	} catch (error) {
+		console.error(`Error encrypting data : ${error}`);
+	}
 
-	res.status(200).send(cipherText.toString('base64'));
+	return res
+		.status(200)
+		.send(
+			new InternalServerError('Error encrypting data').serializeErrors()
+		);
 });
 
 export { router as encryptionRouter };

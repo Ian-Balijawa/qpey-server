@@ -4,7 +4,6 @@ import { generateKeyPairRSA } from '../../core/key-pair';
 import { BadRequestError } from '../../errors';
 import { validateRequest } from '../../middlewares';
 import { User } from '../../models/User';
-import { sendSMS } from '../../services/notification';
 import { PasswordManager } from '../../services/password';
 
 const router = express.Router();
@@ -31,7 +30,6 @@ router.post(
 			return res.status(error.statusCode).send(error.serializeErrors());
 		}
 
-		sendSMS('Welcome to QPey', phone);
 		let [publicKey, privateKey] = await generateKeyPairRSA();
 
 		password = await PasswordManager.toHash(password);

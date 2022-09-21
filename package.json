@@ -34,10 +34,12 @@
 		"helmet": "^5.1.0",
 		"jest": "^28.1.2",
 		"jsonwebtoken": "^8.5.1",
+		"loadtest": "^5.2.0",
 		"mongoose": "^6.4.6",
 		"morgan": "^1.10.0",
 		"redis": "^4.1.1",
 		"supertest": "^6.2.4",
+		"textmagic-rest-client": "^1.0.11",
 		"twilio": "^3.81.0"
 	},
 	"devDependencies": {

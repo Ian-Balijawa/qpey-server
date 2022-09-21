@@ -1,24 +1,12 @@
-import twilio from "twilio";
-import { QPEY_KEYS } from "../config/keys";
-import { MessageInstance } from "twilio/lib/rest/api/v2010/account/message";
-const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN } = QPEY_KEYS;
+const accountSid = 'ACea1c5b232d2ff55565012eaffbc76adf';
+const authToken = 'a43f5a278d96061678ab5eb119ea2091';
+const client = require('twilio')(accountSid, authToken);
 
-const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
-
-export const sendSMS = async (
-  msg: string,
-  toNo: string
-): Promise<MessageInstance | undefined> => {
-  try {
-    const message = await client.messages.create({
-      body: msg,
-      from: QPEY_KEYS.TWILIO_PHONE_NO,
-      to: toNo,
-    });
-    return message;
-  } catch (error) {
-    console.error("error #%d", error);
-  }
-};
-
-export { client };
+client.messages
+	.create({
+		body: 'hello this is from qpey engineeering team thanks for registering',
+		messagingServiceSid: 'MG66776ef213feac97e63f2a186e4c298f',
+		to: '+256756008970',
+	})
+	.then((message: { sid: any }) => console.log(message.sid))
+	.done();

@@ -5,6 +5,8 @@ import { User } from '../../models/User';
 import crypto from 'crypto';
 import { currentUserRouter } from '../auth/current-user';
 import { NotAuthorizedError } from '../../errors/not-authorized-error';
+import { CustomError } from '../../errors/custom-error';
+import { InternalServerError } from '../../errors/internal-server-error';
 
 const router = express.Router();
 
@@ -32,17 +34,31 @@ router.post(
 			);
 			return res.status(error.statusCode).send(error.serializeErrors());
 		}
-		const plainText = crypto.privateDecrypt(
-			{
-				key: Buffer.from(currentUser?.privateKey!),
-				padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-				oaepHash: 'sha512',
-				passphrase: process.env.PASS_PHRASE!,
-			},
-			Buffer.from(cipherText, 'base64')
-		);
+		let plainText;
+		try {
+			plainText = crypto.privateDecrypt(
+				{
+					key: Buffer.from(currentUser?.privateKey!),
+					padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
+					oaepHash: 'sha512',
+					passphrase: process.env.PASS_PHRASE!,
+				},
+				Buffer.from(cipherText, 'base64')
+			);
+			return res
+				.status(200)
+				.send(JSON.parse(plainText?.toString('utf8')));
+		} catch (error) {
+			console.error(`Error during decryption: ${error}`);
+		}
 
-		res.status(200).send(JSON.parse(plainText.toString('utf8')));
+		return res
+			.status(200)
+			.send(
+				new InternalServerError(
+					'Error During Decryption'
+				).serializeErrors()
+			);
 	}
 );
 

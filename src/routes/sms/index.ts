@@ -1,14 +1,12 @@
-import express, { Request, Response } from "express";
-import { AuthenticatedMiddleware as requireAuth } from "../../middlewares/require-auth";
-import { sendSMS } from "../../services/notification";
+import express, { Request, Response } from 'express';
+import { AuthenticatedMiddleware as requireAuth } from '../../middlewares/require-auth';
 
 const router = express.Router();
 
-router.post("/", requireAuth, async (req: Request, res: Response) => {
-  const { message, toNo } = req.body;
+router.post('/', requireAuth, async (req: Request, res: Response) => {
+	const { message, toNo } = req.body;
 
-  const msg = await sendSMS(message, toNo);
-  res.send(msg);
+	res.send('msg');
 });
 
 export { router as smsRouter };
