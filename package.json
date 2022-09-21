@@ -10,7 +10,7 @@
 		"postinstall": "tsc",
 		"start": "node build/index.js",
 		"watch-ts": "tsc -w",
-		"dev": "nodemon --watch \"./**/*.ts\" --exec \"ts-node\" source/index.ts"
+		"dev": "nodemon build/index.js"
 	},
 	"engines": {
 		"node": "16.17.0",

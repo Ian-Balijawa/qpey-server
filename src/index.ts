@@ -60,15 +60,12 @@ const start = async (): Promise<void> | never => {
 start();
 
 process.on('uncaughtException', err => {
-	console.log('Error: ', err);
 	throw new Error((err as Error).message);
 });
 process.on('unhandledRejection', err => {
-	console.log('Error: ', err);
 	throw new Error((err as Error).message);
 });
 process.on('uncaughtExceptionMonitor', err => {
-	console.log('Error: ', err);
 	throw new Error((err as Error).message);
 });
 
