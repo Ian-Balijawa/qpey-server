@@ -8,7 +8,7 @@
 	"license": "ISC",
 	"scripts": {
 		"postinstall": "tsc",
-		"start": "pm2-runtime start ecosystem.config.js --env production",
+		"start": "build/index.js",
 		"watch-ts": "tsc -w",
 		"dev": "nodemon build/index.js"
 	},
